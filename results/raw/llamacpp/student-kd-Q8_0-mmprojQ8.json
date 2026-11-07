@@ -1,0 +1,56 @@
+{
+  "name": "student-kd-Q8_0-mmprojQ8",
+  "backend": "llama.cpp",
+  "n": 3000,
+  "vqa_acc": 0.7955666666666666,
+  "vqa_acc_by_type": {
+    "other": 0.7251340482573727,
+    "yes/no": 0.92785265049416,
+    "number": 0.688860759493671
+  },
+  "files": {
+    "llm": "student-kd-Q8_0.gguf",
+    "mmproj": "mmproj-student-kd-Q8_0.gguf"
+  },
+  "disk_bytes": 2359465120,
+  "disk_bytes_by_part": {
+    "llm": 1646571552,
+    "mmproj": 712893568
+  },
+  "device": "RunPod NVIDIA A40",
+  "parallel": 8,
+  "latency_s": null,
+  "throughput_questions_per_s": 8.871400265893017,
+  "server_timings_median": {
+    "prompt_n": 385.0,
+    "prompt_ms": 413.373,
+    "predicted_n": 2.0,
+    "predicted_ms": 137.2245,
+    "predicted_per_second": 7.746632357890125,
+    "prompt_per_second": 957.4505234843684
+  },
+  "peak_server_rss_bytes": 10845302784,
+  "server_load_s": 2.011383295059204,
+  "server_cmd": [
+    "/workspace/vlm-compress/llama.cpp/build/bin/llama-server",
+    "-m",
+    "runs/qwen25vl3b/gguf/student-kd-Q8_0.gguf",
+    "--mmproj",
+    "runs/qwen25vl3b/gguf/mmproj-student-kd-Q8_0.gguf",
+    "--port",
+    "40565",
+    "-np",
+    "8",
+    "-c",
+    "16384",
+    "-ngl",
+    "99",
+    "--temp",
+    "0",
+    "--no-webui",
+    "--image-max-tokens",
+    "512",
+    "--image-min-tokens",
+    "256"
+  ]
+}

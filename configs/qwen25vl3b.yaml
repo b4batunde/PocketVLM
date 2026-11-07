@@ -1,0 +1,67 @@
+# Main experiment config. Every script reads this (override path with --config or $VLMC_CONFIG).
+model_id: Qwen/Qwen2.5-VL-3B-Instruct
+student_id: Qwen/Qwen2-VL-2B-Instruct     # distillation student; same Qwen2 tokenizer as the teacher
+
+work_dir: runs/qwen25vl3b                  # all checkpoints, GGUFs, results land here
+
+data:
+  hf_id: lmms-lab/VQAv2
+  split: validation          # VQAv2 val (214k Qs, 10 human answers each). Partitioned BY IMAGE below.
+  eval_image_frac: 0.20      # 20% of images are held out for eval; never seen in train/calib
+  train_questions: 20000
+  calib_questions: 512       # GPTQ/AWQ/imatrix calibration, drawn from train images
+  eval_questions: 3000
+  seed: 42
+
+prompt_suffix: "Answer the question using a single word or phrase."   # Qwen's own VQAv2 eval prompt
+
+image:                       # caps visual tokens so HF and llama.cpp see the same resolution
+  min_pixels: 200704         # 256 * 28 * 28
+  max_pixels: 401408         # 512 * 28 * 28  -> <= 512 visual tokens
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  # LLM decoder only; the vision tower is frozen and never adapted.
+  target_regex: '^(?!.*visual).*\.layers\.\d+\.(self_attn\.(q_proj|k_proj|v_proj|o_proj)|mlp\.(gate_proj|up_proj|down_proj))$'
+
+train:
+  epochs: 1
+  lr: 1.0e-4
+  warmup_ratio: 0.03
+  batch_size: 8
+  grad_accum: 2
+  max_new_tokens_label: 16
+  log_every: 10
+  grad_checkpointing: true
+
+distill:
+  student_lora_r: 64
+  student_lora_alpha: 128
+  temperature: 2.0
+  alpha_kd: 0.7              # loss = alpha*T^2*KL(teacher||student) + (1-alpha)*CE(gold)
+  epochs: 1
+  lr: 1.0e-4
+  batch_size: 8
+  grad_accum: 2
+
+quant:
+  calib_samples: 256
+  max_seq_len: 2048
+  # bits -> group size. 2-bit uses smaller groups (more scales) or it collapses outright.
+  group_size: {4: 128, 3: 128, 2: 64}
+  gptq_symmetric: true
+  awq_symmetric: false
+  ignore: ["lm_head", "re:.*visual.*"]   # vision tower stays bf16 for GPTQ/AWQ (fair to GGUF mmproj, see README)
+
+gguf:
+  llm_types: [Q8_0, Q6_K, Q4_K_M, Q3_K_M, Q2_K, IQ2_XS]
+  mmproj_types: [F16, Q8_0]
+  use_imatrix: true          # GGUF's analogue of GPTQ/AWQ calibration; required for IQ2_*
+
+eval:
+  max_new_tokens: 10
+  hf_batch_size: 16
+  llamacpp_parallel: 8       # server slots for accuracy sweeps on the pod
+retain_threshold: 0.95       # report recommends the smallest variant keeping >= 95% of baseline accuracy

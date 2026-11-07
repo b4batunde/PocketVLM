@@ -1,0 +1,29 @@
+{
+  "name": "student-base-bf16",
+  "backend": "hf",
+  "model": "Qwen/Qwen2-VL-2B-Instruct",
+  "adapter": null,
+  "load_in_4bit": false,
+  "n": 3000,
+  "vqa_acc": 0.796,
+  "vqa_acc_by_type": {
+    "other": 0.7169571045576408,
+    "yes/no": 0.9309074573225515,
+    "number": 0.7144303797468354
+  },
+  "disk_bytes": 4418050768,
+  "checkpoint_disk_bytes": 4418050768,
+  "weight_bytes_in_memory": 4417971872,
+  "peak_gpu_mem_bytes": 5753465856,
+  "gpu_questions_per_s": 10.988282710411456,
+  "gpu_gen_tokens_per_s": 26.027578980061268,
+  "batch_size": 16,
+  "load_s": 3.1498584747314453,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  }
+}

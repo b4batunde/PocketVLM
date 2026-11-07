@@ -1,0 +1,19 @@
+# Versions the full pipeline was smoke-tested with (tests/smoke/run_smoke.sh).
+torch==2.14.1
+torchvision==0.29.2      # must match torch; the RunPod image ships an older one that breaks transformers
+transformers==5.21.0
+peft==0.21.2
+accelerate==1.15.0
+datasets==5.1.0
+llmcompressor==0.15.0
+compressed-tensors==0.20.1
+bitsandbytes==0.50.2
+safetensors==0.8.0
+tokenizers==0.23.3
+sentencepiece==0.2.3
+pillow==12.3.0
+pyyaml==6.0.3
+psutil==7.2.2
+requests==2.34.2
+matplotlib==3.11.2
+pytest

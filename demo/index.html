@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On-Device VQA</title>
+<style>
+  :root { --bg:#fcfcfb; --card:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --line:#e6e5e1; --accent:#2a78d6; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1a1a19; --card:#232322; --ink:#f0efec; --ink2:#c3c2b7; --line:#3a3936; --accent:#3987e5; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 -apple-system, system-ui, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  .meta { color:var(--ink2); font-size:13px; margin-bottom:20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+  #drop { border:1.5px dashed var(--line); border-radius:8px; min-height:220px; display:flex; align-items:center;
+          justify-content:center; cursor:pointer; overflow:hidden; color:var(--ink2); }
+  #drop img { max-width:100%; max-height:360px; display:block; }
+  form { display:flex; gap:8px; margin-top:12px; }
+  input[type=text] { flex:1; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font:inherit; }
+  button { padding:10px 16px; border:0; border-radius:8px; background:var(--accent); color:#fff; font:inherit; cursor:pointer; }
+  button:disabled { opacity:.5; cursor:default; }
+  #answer { font-size:22px; font-weight:600; margin-top:16px; min-height:1.5em; }
+  #stats { color:var(--ink2); font-size:13px; font-variant-numeric:tabular-nums; }
+  label.mode { color:var(--ink2); font-size:13px; display:block; margin-top:10px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Visual question answering, fully on device</h1>
+  <div class="meta" id="meta">loading model info...</div>
+  <div class="card">
+    <div id="drop">Click or drop an image</div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <form id="ask">
+      <input type="text" id="q" placeholder="Ask about the image, e.g. What color is the bus?" autocomplete="off">
+      <button id="go" disabled>Ask</button>
+    </form>
+    <label class="mode"><input type="checkbox" id="short" checked> Short answer (VQA mode)</label>
+    <div id="answer"></div>
+    <div id="stats"></div>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+let dataUrl = null;
+window.SUFFIX = 'Answer the question using a single word or phrase.';
+fetch('/demo-info').then(r => r.json()).then(i => {
+  window.SUFFIX = i.suffix;
+  $('meta').textContent = `${i.label} · ${i.size_gb.toFixed(2)} GB on disk · llama.cpp · no network calls`;
+}).catch(() => { $('meta').textContent = ''; });
+function load(f) {
+  const r = new FileReader();
+  r.onload = () => { dataUrl = r.result; $('drop').innerHTML = `<img src="${dataUrl}" alt="uploaded image">`; $('go').disabled = false; };
+  r.readAsDataURL(f);
+}
+$('drop').onclick = () => $('file').click();
+$('file').onchange = e => e.target.files[0] && load(e.target.files[0]);
+$('drop').ondragover = e => e.preventDefault();
+$('drop').ondrop = e => { e.preventDefault(); e.dataTransfer.files[0] && load(e.dataTransfer.files[0]); };
+$('ask').onsubmit = async e => {
+  e.preventDefault();
+  if (!dataUrl) return;
+  const q = $('q').value.trim() || 'Describe this image.';
+  const short = $('short').checked;
+  $('go').disabled = true; $('answer').textContent = '...'; $('stats').textContent = '';
+  const t0 = performance.now();
+  try {
+    const r = await fetch('/v1/chat/completions', { method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ temperature: 0, max_tokens: short ? 10 : 256, messages: [{ role: 'user', content: [
+        { type: 'image_url', image_url: { url: dataUrl } },
+        { type: 'text', text: short ? `${q}\n${window.SUFFIX}` : q } ] }] }) });
+    const j = await r.json();
+    const ms = performance.now() - t0, t = j.timings || {};
+    $('answer').textContent = (j.choices?.[0]?.message?.content || '').trim().split('\n')[0];
+    $('stats').textContent = `${(ms/1000).toFixed(2)} s end-to-end · prefill ${t.prompt_n ?? '?'} tokens in ${Math.round(t.prompt_ms ?? 0)} ms · decode ${(t.predicted_per_second ?? 0).toFixed(1)} tok/s`;
+  } catch (err) { $('answer').textContent = 'Error: ' + err; }
+  $('go').disabled = false;
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "vllm-ft-gptq-w4",
+  "backend": "vllm",
+  "model": "runs/qwen25vl3b/models/ft-gptq-w4",
+  "n": 3000,
+  "vqa_acc": 0.8165333333333333,
+  "vqa_acc_by_type": {
+    "other": 0.7410187667560321,
+    "yes/no": 0.9494159928122192,
+    "number": 0.7273417721518988
+  },
+  "weight_memory_gib": 3.31475830078125,
+  "throughput_questions_per_s": 14.634656475722952,
+  "latency_s": {
+    "median": 0.0934528112411499,
+    "p90": 0.1021108627319336,
+    "n": 200
+  },
+  "decode_tokens_per_s_single_stream": 183.56581590438307,
+  "image_cap_applied": true,
+  "gpu": "NVIDIA A40",
+  "load_s": 91.09375786781311
+}

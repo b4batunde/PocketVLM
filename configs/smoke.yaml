@@ -1,0 +1,68 @@
+# CPU smoke test: tiny random-weight models + synthetic data. Not for results.
+model_id: smoke_artifacts/models/tiny-qwen25vl
+student_id: smoke_artifacts/models/tiny-qwen2vl-student
+work_dir: smoke_artifacts/run
+data:
+  hf_id: lmms-lab/VQAv2
+  split: validation
+  eval_image_frac: 0.2
+  train_questions: 20000
+  calib_questions: 512
+  eval_questions: 5000
+  seed: 42
+prompt_suffix: Answer the question using a single word or phrase.
+image:
+  min_pixels: 3136
+  max_pixels: 12544
+lora:
+  r: 32
+  alpha: 32
+  dropout: 0.05
+  target_regex: ^(?!.*visual).*\.layers\.\d+\.(self_attn\.(q_proj|k_proj|v_proj|o_proj)|mlp\.(gate_proj|up_proj|down_proj))$
+train:
+  epochs: 1
+  lr: 0.001
+  warmup_ratio: 0.03
+  batch_size: 4
+  grad_accum: 1
+  max_new_tokens_label: 16
+  log_every: 2
+  grad_checkpointing: true
+distill:
+  student_lora_r: 64
+  student_lora_alpha: 128
+  temperature: 2.0
+  alpha_kd: 0.7
+  epochs: 1
+  lr: 0.001
+  batch_size: 4
+  grad_accum: 1
+quant:
+  calib_samples: 8
+  max_seq_len: 2048
+  group_size:
+    4: 64
+    3: 64
+    2: 32
+  gptq_symmetric: true
+  awq_symmetric: false
+  ignore:
+  - lm_head
+  - re:.*visual.*
+gguf:
+  llm_types:
+  - Q8_0
+  - Q6_K
+  - Q4_K_M
+  - Q3_K_M
+  - Q2_K
+  - IQ2_XS
+  mmproj_types:
+  - F16
+  - Q8_0
+  use_imatrix: true
+eval:
+  max_new_tokens: 10
+  hf_batch_size: 8
+  llamacpp_parallel: 2
+retain_threshold: 0.95

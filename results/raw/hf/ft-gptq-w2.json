@@ -1,0 +1,31 @@
+{
+  "name": "ft-gptq-w2",
+  "backend": "hf",
+  "model": "runs/qwen25vl3b/models/ft-gptq-w2",
+  "adapter": null,
+  "load_in_4bit": false,
+  "n": 3000,
+  "vqa_acc": 0.07436666666666666,
+  "vqa_acc_by_type": {
+    "other": 0.042493297587131364,
+    "yes/no": 0.1359389038634322,
+    "number": 0.021265822784810127
+  },
+  "disk_bytes": 2740671440,
+  "checkpoint_disk_bytes": 2740671440,
+  "weight_bytes_in_memory": 2740523616,
+  "peak_gpu_mem_bytes": 8931976704,
+  "gpu_questions_per_s": 6.729908326160736,
+  "gpu_gen_tokens_per_s": 50.64031685158415,
+  "batch_size": 16,
+  "load_s": 1.738997459411621,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  },
+  "method": "gptq",
+  "bits": 2
+}

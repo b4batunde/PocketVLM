@@ -1,0 +1,30 @@
+{
+  "name": "ft-bf16",
+  "backend": "hf",
+  "model": "runs/qwen25vl3b/models/ft-merged",
+  "adapter": null,
+  "load_in_4bit": false,
+  "n": 3000,
+  "vqa_acc": 0.8137333333333333,
+  "vqa_acc_by_type": {
+    "other": 0.7416890080428954,
+    "yes/no": 0.9443845462713386,
+    "number": 0.7177215189873418
+  },
+  "disk_bytes": 7509338080,
+  "checkpoint_disk_bytes": 7509338080,
+  "weight_bytes_in_memory": 7509246624,
+  "peak_gpu_mem_bytes": 8845142528,
+  "gpu_questions_per_s": 7.686964909115324,
+  "gpu_gen_tokens_per_s": 18.210419869694203,
+  "batch_size": 16,
+  "load_s": 2.6070287227630615,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  },
+  "role": "baseline"
+}

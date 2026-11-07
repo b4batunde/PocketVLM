@@ -1,0 +1,59 @@
+{
+  "name": "mac-ft-IQ2_XS-mmprojQ8_0",
+  "backend": "llama.cpp",
+  "n": 300,
+  "vqa_acc": 0.7393333333333334,
+  "vqa_acc_by_type": {
+    "other": 0.65527950310559,
+    "yes/no": 0.9137254901960784,
+    "number": 0.6243243243243244
+  },
+  "files": {
+    "llm": "ft-IQ2_XS.gguf",
+    "mmproj": "mmproj-ft-Q8_0.gguf"
+  },
+  "disk_bytes": 1879312416,
+  "disk_bytes_by_part": {
+    "llm": 1031544160,
+    "mmproj": 847768256
+  },
+  "device": "MacBook Air M3 16GB",
+  "parallel": 1,
+  "latency_s": {
+    "median": 3.4163976907730103,
+    "p90": 4.023936033248901
+  },
+  "throughput_questions_per_s": 0.29073098247761286,
+  "server_timings_median": {
+    "prompt_n": 385.0,
+    "prompt_ms": 3357.1710000000003,
+    "predicted_n": 2.0,
+    "predicted_ms": 36.197500000000005,
+    "predicted_per_second": 28.416763790619818,
+    "prompt_per_second": 116.35694454683338
+  },
+  "peak_server_rss_bytes": 2867806208,
+  "server_load_s": 1.0296387672424316,
+  "server_cmd": [
+    "/Users/home/Downloads/vlm-compress/llama.cpp/build/bin/llama-server",
+    "-m",
+    "runs/qwen25vl3b/gguf/ft-IQ2_XS.gguf",
+    "--mmproj",
+    "runs/qwen25vl3b/gguf/mmproj-ft-Q8_0.gguf",
+    "--port",
+    "58695",
+    "-np",
+    "1",
+    "-c",
+    "2048",
+    "-ngl",
+    "99",
+    "--temp",
+    "0",
+    "--no-webui",
+    "--image-max-tokens",
+    "512",
+    "--image-min-tokens",
+    "256"
+  ]
+}

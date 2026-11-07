@@ -1,0 +1,23 @@
+{
+  "name": "vllm-ft-bf16",
+  "backend": "vllm",
+  "model": "runs/qwen25vl3b/models/ft-merged",
+  "n": 3000,
+  "vqa_acc": 0.8147,
+  "vqa_acc_by_type": {
+    "other": 0.7441018766756032,
+    "yes/no": 0.9434860736747528,
+    "number": 0.7184810126582278
+  },
+  "weight_memory_gib": 7.157541751861572,
+  "throughput_questions_per_s": 14.860756232242966,
+  "latency_s": {
+    "median": 0.10489499568939209,
+    "p90": 0.11991500854492188,
+    "n": 200
+  },
+  "decode_tokens_per_s_single_stream": 77.50697520657309,
+  "image_cap_applied": true,
+  "gpu": "NVIDIA A40",
+  "load_s": 87.33910036087036
+}

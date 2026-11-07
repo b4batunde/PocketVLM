@@ -1,0 +1,29 @@
+{
+  "name": "base-bf16",
+  "backend": "hf",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "adapter": null,
+  "load_in_4bit": false,
+  "n": 3000,
+  "vqa_acc": 0.8056000000000001,
+  "vqa_acc_by_type": {
+    "other": 0.7290214477211796,
+    "yes/no": 0.94366576819407,
+    "number": 0.7058227848101266
+  },
+  "disk_bytes": 7509337976,
+  "checkpoint_disk_bytes": 7509337976,
+  "weight_bytes_in_memory": 7509246624,
+  "peak_gpu_mem_bytes": 8845142528,
+  "gpu_questions_per_s": 7.7179973250778655,
+  "gpu_gen_tokens_per_s": 18.412568951860763,
+  "batch_size": 16,
+  "load_s": 3.0876903533935547,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  }
+}

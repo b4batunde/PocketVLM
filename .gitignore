@@ -1,0 +1,11 @@
+runs/
+smoke_artifacts/
+*.gguf
+__pycache__/
+smoke.log
+.venv/
+*.tar
+*.tgz
+llama.cpp/
+.DS_Store
+*.out

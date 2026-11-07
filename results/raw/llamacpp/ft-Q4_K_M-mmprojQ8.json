@@ -1,0 +1,56 @@
+{
+  "name": "ft-Q4_K_M-mmprojQ8",
+  "backend": "llama.cpp",
+  "n": 3000,
+  "vqa_acc": 0.8098333333333333,
+  "vqa_acc_by_type": {
+    "other": 0.7333780160857909,
+    "yes/no": 0.9416891284815813,
+    "number": 0.7270886075949367
+  },
+  "files": {
+    "llm": "ft-Q4_K_M.gguf",
+    "mmproj": "mmproj-ft-Q8_0.gguf"
+  },
+  "disk_bytes": 2777669664,
+  "disk_bytes_by_part": {
+    "llm": 1929901408,
+    "mmproj": 847768256
+  },
+  "device": "RunPod NVIDIA A40",
+  "parallel": 8,
+  "latency_s": null,
+  "throughput_questions_per_s": 6.765177421467674,
+  "server_timings_median": {
+    "prompt_n": 385.0,
+    "prompt_ms": 532.2449999999999,
+    "predicted_n": 2.0,
+    "predicted_ms": 203.7625,
+    "predicted_per_second": 5.3224475392709785,
+    "prompt_per_second": 737.8196622568528
+  },
+  "peak_server_rss_bytes": 10965508096,
+  "server_load_s": 2.014552116394043,
+  "server_cmd": [
+    "/workspace/vlm-compress/llama.cpp/build/bin/llama-server",
+    "-m",
+    "runs/qwen25vl3b/gguf/ft-Q4_K_M.gguf",
+    "--mmproj",
+    "runs/qwen25vl3b/gguf/mmproj-ft-Q8_0.gguf",
+    "--port",
+    "54609",
+    "-np",
+    "8",
+    "-c",
+    "16384",
+    "-ngl",
+    "99",
+    "--temp",
+    "0",
+    "--no-webui",
+    "--image-max-tokens",
+    "512",
+    "--image-min-tokens",
+    "256"
+  ]
+}

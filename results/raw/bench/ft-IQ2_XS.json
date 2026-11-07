@@ -1,0 +1,13 @@
+{
+  "name": "ft-IQ2_XS",
+  "device": "MacBook Air M3 16GB",
+  "backend": "MTL,BLAS",
+  "build": "52c9bad94",
+  "cpu": "Accelerate, Apple M3",
+  "gpu": "Apple M3",
+  "model_size_bytes": 1025589248,
+  "pp512_tokens_per_s": 454.412781,
+  "pp512_stddev": 13.567609,
+  "tg128_tokens_per_s": 46.606087,
+  "tg128_stddev": 1.221466
+}

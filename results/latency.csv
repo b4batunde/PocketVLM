@@ -1,0 +1,15 @@
+variant,device,n,size_gb,median_s,p90_s,prefill_tokens
+mac-ft-F16-mmprojF16,MacBook Air M3 16GB,300,7.517,3.149,3.486,385
+mac-ft-F16-mmprojQ8_0,MacBook Air M3 16GB,300,7.026,3.749,4.358,385
+mac-ft-IQ2_XS-mmprojF16,MacBook Air M3 16GB,300,2.37,3.418,3.868,385
+mac-ft-IQ2_XS-mmprojQ8_0,MacBook Air M3 16GB,300,1.879,3.416,4.024,385
+mac-ft-Q2_K-mmprojF16,MacBook Air M3 16GB,300,2.613,3.236,3.780,385
+mac-ft-Q2_K-mmprojQ8_0,MacBook Air M3 16GB,300,2.123,3.399,3.919,385
+mac-ft-Q3_K_M-mmprojF16,MacBook Air M3 16GB,300,2.929,3.135,3.521,385
+mac-ft-Q3_K_M-mmprojQ8_0,MacBook Air M3 16GB,300,2.438,3.499,3.986,385
+mac-ft-Q4_K_M-mmprojF16,MacBook Air M3 16GB,300,3.268,3.090,3.649,385
+mac-ft-Q4_K_M-mmprojQ8_0,MacBook Air M3 16GB,300,2.778,3.160,3.575,385
+mac-ft-Q8_0-mmprojF16,MacBook Air M3 16GB,300,4.624,3.344,4.002,385
+mac-ft-Q8_0-mmprojQ8_0,MacBook Air M3 16GB,300,4.133,3.369,3.888,385
+mac-student-kd-Q3_K_M,MacBook Air M3 16GB,300,1.537,2.692,3.123,385
+mac-student-kd-Q4_K_M,MacBook Air M3 16GB,300,1.699,2.483,2.893,385

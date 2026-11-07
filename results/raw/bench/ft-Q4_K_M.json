@@ -1,0 +1,13 @@
+{
+  "name": "ft-Q4_K_M",
+  "device": "MacBook Air M3 16GB",
+  "backend": "MTL,BLAS",
+  "build": "52c9bad94",
+  "cpu": "Accelerate, Apple M3",
+  "gpu": "Apple M3",
+  "model_size_bytes": 1923946496,
+  "pp512_tokens_per_s": 243.327769,
+  "pp512_stddev": 17.88155,
+  "tg128_tokens_per_s": 18.459263,
+  "tg128_stddev": 1.530427
+}

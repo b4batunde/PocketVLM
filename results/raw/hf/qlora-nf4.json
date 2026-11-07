@@ -1,0 +1,31 @@
+{
+  "name": "qlora-nf4",
+  "backend": "hf",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "adapter": "runs/qwen25vl3b/adapters/qlora",
+  "load_in_4bit": true,
+  "n": 3000,
+  "vqa_acc": 0.8065333333333333,
+  "vqa_acc_by_type": {
+    "other": 0.7289544235924932,
+    "yes/no": 0.9398921832884096,
+    "number": 0.7237974683544304
+  },
+  "disk_bytes": 2467185312,
+  "checkpoint_disk_bytes": 7629147064,
+  "weight_bytes_in_memory": 2467185312,
+  "peak_gpu_mem_bytes": 4477663232,
+  "gpu_questions_per_s": 5.857415646134496,
+  "gpu_gen_tokens_per_s": 13.911362159569427,
+  "batch_size": 16,
+  "load_s": 7.468786716461182,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  },
+  "method": "qlora",
+  "bits": 4
+}

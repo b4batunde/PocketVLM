@@ -1,0 +1,31 @@
+{
+  "name": "ft-awq-w2",
+  "backend": "hf",
+  "model": "runs/qwen25vl3b/models/ft-awq-w2",
+  "adapter": null,
+  "load_in_4bit": false,
+  "n": 3000,
+  "vqa_acc": 0.0005333333333333334,
+  "vqa_acc_by_type": {
+    "other": 0.00040214477211796245,
+    "yes/no": 0.0008984725965858042,
+    "number": 0.0
+  },
+  "disk_bytes": 2751539880,
+  "checkpoint_disk_bytes": 2751539880,
+  "weight_bytes_in_memory": 2751361632,
+  "peak_gpu_mem_bytes": 8979916800,
+  "gpu_questions_per_s": 6.7120748489221835,
+  "gpu_gen_tokens_per_s": 64.99525812039647,
+  "batch_size": 16,
+  "load_s": 1.70918869972229,
+  "env": {
+    "torch": "2.14.1+cu130",
+    "device": "cuda",
+    "gpu": "NVIDIA A40",
+    "transformers": "5.21.0",
+    "host": "c150ba09b65e"
+  },
+  "method": "awq",
+  "bits": 2
+}

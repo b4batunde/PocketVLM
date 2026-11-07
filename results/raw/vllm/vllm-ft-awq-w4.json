@@ -1,0 +1,23 @@
+{
+  "name": "vllm-ft-awq-w4",
+  "backend": "vllm",
+  "model": "runs/qwen25vl3b/models/ft-awq-w4",
+  "n": 3000,
+  "vqa_acc": 0.8098333333333333,
+  "vqa_acc_by_type": {
+    "other": 0.7391420911528149,
+    "yes/no": 0.938364779874214,
+    "number": 0.7146835443037975
+  },
+  "weight_memory_gib": 3.3248519897460938,
+  "throughput_questions_per_s": 14.716599761691871,
+  "latency_s": {
+    "median": 0.09412109851837158,
+    "p90": 0.10307765007019043,
+    "n": 200
+  },
+  "decode_tokens_per_s_single_stream": 179.2735008533282,
+  "image_cap_applied": true,
+  "gpu": "NVIDIA A40",
+  "load_s": 85.5126256942749
+}

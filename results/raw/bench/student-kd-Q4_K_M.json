@@ -1,0 +1,13 @@
+{
+  "name": "student-kd-Q4_K_M",
+  "device": "MacBook Air M3 16GB",
+  "backend": "MTL,BLAS",
+  "build": "52c9bad94",
+  "cpu": "Accelerate, Apple M3",
+  "gpu": "Apple M3",
+  "model_size_bytes": 980097536,
+  "pp512_tokens_per_s": 895.740851,
+  "pp512_stddev": 48.268054,
+  "tg128_tokens_per_s": 48.009376,
+  "tg128_stddev": 3.808429
+}

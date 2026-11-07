@@ -1,0 +1,5 @@
+# Separate venv for scripts/11_bench_vllm.py (vLLM pins its own torch / transformers / compressed-tensors).
+vllm==0.33.0
+ninja
+pyyaml
+pillow
